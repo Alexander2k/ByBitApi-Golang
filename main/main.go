@@ -2,6 +2,7 @@ package main
 
 import (
 	"ByBitApiV2/internal/client"
+	"ByBitApiV2/internal/derivatives"
 	"fmt"
 	"github.com/joho/godotenv"
 	"log"
@@ -14,9 +15,9 @@ func main() {
 	}
 
 	a := client.NewAPI()
-	tickerS, _ := a.Spot.GetTicker()
-	tickerM, _ := a.Margin.GetTicker()
 
-	fmt.Printf("%+v", tickerS)
-	fmt.Printf("%+v", tickerM)
+	inst := a.Derivatives.GetInstrumentInfo(derivatives.INVERSE, "", "2")
+	fmt.Printf("%+v\n", inst)
+	fmt.Println("**************************************")
+
 }
