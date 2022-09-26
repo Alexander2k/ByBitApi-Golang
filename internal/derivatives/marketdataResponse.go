@@ -102,3 +102,71 @@ type InstrumentInfoResponse struct {
 	} `json:"result"`
 	Time int64 `json:"time"`
 }
+
+type PriceKlineResponse struct {
+	RetCode int    `json:"retCode"`
+	RetMsg  string `json:"retMsg"`
+	Result  struct {
+		Symbol   string     `json:"symbol"`
+		Category string     `json:"category"`
+		List     [][]string `json:"list"`
+	} `json:"result"`
+	RetExtInfo interface{} `json:"retExtInfo"`
+	Time       int64       `json:"time"`
+}
+
+type OrderBookResponse struct {
+	RetCode int    `json:"retCode"`
+	RetMsg  string `json:"retMsg"`
+	Result  struct {
+		Symbol string     `json:"s"`
+		Bid    [][]string `json:"b"`
+		Ask    [][]string `json:"a"`
+		Ts     int64      `json:"ts"`
+		U      int        `json:"u"`
+	} `json:"result"`
+}
+
+type KlineResponse struct {
+	RetCode int    `json:"retCode"`
+	RetMsg  string `json:"retMsg"`
+	Result  struct {
+		Category string   `json:"category"`
+		Symbol   string   `json:"symbol"`
+		Interval string   `json:"interval"`
+		List     []string `json:"list"`
+	} `json:"result"`
+}
+
+type OptionInfoResponse struct {
+	RetCode int    `json:"retCode"`
+	RetMsg  string `json:"retMsg"`
+	Result  struct {
+		ResultTotalSize int    `json:"resultTotalSize"`
+		Cursor          string `json:"cursor"`
+		DataList        []struct {
+			Category        string `json:"category"`
+			Symbol          string `json:"symbol"`
+			Status          string `json:"status"`
+			BaseCoin        string `json:"baseCoin"`
+			QuoteCoin       string `json:"quoteCoin"`
+			SettleCoin      string `json:"settleCoin"`
+			OptionsType     string `json:"optionsType"`
+			LaunchTime      string `json:"launchTime"`
+			DeliveryTime    string `json:"deliveryTime"`
+			DeliveryFeeRate string `json:"deliveryFeeRate"`
+			PriceFilter     struct {
+				MinPrice string `json:"minPrice"`
+				MaxPrice string `json:"maxPrice"`
+				TickSize string `json:"tickSize"`
+			} `json:"priceFilter"`
+			LotSizeFilter struct {
+				MaxOrderQty string `json:"maxOrderQty"`
+				MinOrderQty string `json:"minOrderQty"`
+				QtyStep     string `json:"qtyStep"`
+			} `json:"lotSizeFilter"`
+		} `json:"dataList"`
+	} `json:"result"`
+	RetExtInfo interface{} `json:"retExtInfo"`
+	Time       int64       `json:"time"`
+}
