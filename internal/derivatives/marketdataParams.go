@@ -26,3 +26,11 @@ type KlineParams struct {
 	End      string `json:"end"`
 	Limit    string `json:"limit,omitempty"`
 }
+
+type FoundingRateHistoryParams struct {
+	Category  string `json:"category"`
+	Symbol    string `json:"symbol"`
+	StartTime string `json:"start_time,omitempty"`
+	EndTime   string `json:"end_time,omitempty"`
+	Limit     string `json:"limit,omitempty"`
+}

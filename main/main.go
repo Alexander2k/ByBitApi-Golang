@@ -31,6 +31,13 @@ func main() {
 		End:      strconv.FormatInt(end.UnixMilli(), 10),
 		Limit:    "25",
 	})
+
+	history, _ := api.Derivatives.GetFoundingRateHistory(derivatives.FoundingRateHistoryParams{
+		Category: "linear",
+		Symbol:   "BTCUSDT",
+	})
+
 	fmt.Printf("%+v\n", inst)
+	fmt.Printf("%+v\n", history)
 
 }

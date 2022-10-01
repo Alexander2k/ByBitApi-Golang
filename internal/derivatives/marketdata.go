@@ -13,6 +13,7 @@ type MarketData interface {
 	GetInstrumentInfo(params GetInstrumentInfoParams) InstrumentInfoResponse
 	GetOptionInfo(params GetInstrumentInfoParams) (OptionInfoResponse, error)
 	GetMarkPriceKline(params KlineParams) (PriceKlineResponse, error)
+	GetIndexPriceKline(params KlineParams) (PriceKlineResponse, error)
 }
 
 func (d *Derivatives) GetOrderBook(params OrderBookParams) (OrderBookResponse, error) {
@@ -154,4 +155,21 @@ func (d *Derivatives) GetIndexPriceKline(params KlineParams) (PriceKlineResponse
 		return PriceKlineResponse{}, err
 	}
 	return ind, err
+}
+
+func (d *Derivatives) GetFoundingRateHistory(params FoundingRateHistoryParams) (FoundingRateHistoryResponse, error) {
+	var fr FoundingRateHistoryResponse
+	q := d.QueryBuild(params)
+	bytes, err := d.Signer.Get(GET, GetFundingRateHistory+q)
+	if err != nil {
+		return FoundingRateHistoryResponse{}, nil
+	}
+
+	err = json.Unmarshal(bytes, &fr)
+	if err != nil {
+		return FoundingRateHistoryResponse{}, err
+	}
+
+	return fr, err
+
 }

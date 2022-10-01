@@ -170,3 +170,37 @@ type OptionInfoResponse struct {
 	RetExtInfo interface{} `json:"retExtInfo"`
 	Time       int64       `json:"time"`
 }
+
+type FoundingRateHistoryResponse struct {
+	RetCode int    `json:"retCode"`
+	RetMsg  string `json:"retMsg"`
+	Result  struct {
+		Category string `json:"category"`
+		List     []struct {
+			Symbol               string `json:"symbol"`
+			FundingRate          string `json:"fundingRate"`
+			FundingRateTimestamp string `json:"fundingRateTimestamp"`
+		} `json:"list"`
+	} `json:"result"`
+	RetExtInfo interface{} `json:"retExtInfo"`
+	Time       int64       `json:"time"`
+}
+
+type RiskLimitResponse struct {
+	RetCode int    `json:"retCode"`
+	RetMsg  string `json:"retMsg"`
+	Result  struct {
+		Category string `json:"category"`
+		List     []struct {
+			Id             int      `json:"id"`
+			Symbol         string   `json:"symbol"`
+			Limit          string   `json:"limit"`
+			MaintainMargin string   `json:"maintainMargin"`
+			InitialMargin  string   `json:"initialMargin"`
+			Section        []string `json:"section"`
+			IsLowestRisk   int      `json:"isLowestRisk"`
+			MaxLeverage    string   `json:"maxLeverage"`
+		} `json:"list"`
+	} `json:"result"`
+	Time int64 `json:"time"`
+}
