@@ -14,6 +14,11 @@ type MarketData interface {
 	GetOptionInfo(params GetInstrumentInfoParams) (OptionInfoResponse, error)
 	GetMarkPriceKline(params KlineParams) (PriceKlineResponse, error)
 	GetIndexPriceKline(params KlineParams) (PriceKlineResponse, error)
+	GetFoundingRateHistory(params FoundingRateHistoryParams) (FoundingRateHistoryResponse, error)
+	GetRiskLimit(params RiskLimitParams) (RiskLimitResponse, error)
+	GetOptionDeliveryPrice(params OptionDeliveryPriceParams) (GetOptionDeliveryPriceResponse, error)
+	GetPublicTradingHistory(params PublicTradingHistoryParams) (GetPublicTradingHistoryResponse, error)
+	GetOpenInterest(params OpenInterest) (OpenInterestResponse, error)
 }
 
 func (d *Derivatives) GetOrderBook(params OrderBookParams) (OrderBookResponse, error) {
@@ -171,5 +176,70 @@ func (d *Derivatives) GetFoundingRateHistory(params FoundingRateHistoryParams) (
 	}
 
 	return fr, err
+
+}
+
+func (d *Derivatives) GetRiskLimit(params RiskLimitParams) (RiskLimitResponse, error) {
+	var rl RiskLimitResponse
+	q := d.QueryBuild(params)
+	bytes, err := d.Signer.Get(GET, GetRiskLimit+q)
+	if err != nil {
+		return RiskLimitResponse{}, nil
+	}
+	err = json.Unmarshal(bytes, &rl)
+	if err != nil {
+		return RiskLimitResponse{}, err
+	}
+
+	return rl, err
+}
+
+func (d *Derivatives) GetOptionDeliveryPrice(params OptionDeliveryPriceParams) (GetOptionDeliveryPriceResponse, error) {
+
+	var opdp GetOptionDeliveryPriceResponse
+	q := d.QueryBuild(params)
+	bytes, err := d.Signer.Get(GET, GetOptionDeliveryPrice+q)
+	if err != nil {
+		return GetOptionDeliveryPriceResponse{}, nil
+	}
+
+	err = json.Unmarshal(bytes, &opdp)
+	if err != nil {
+		return GetOptionDeliveryPriceResponse{}, err
+	}
+
+	return opdp, err
+
+}
+
+func (d *Derivatives) GetPublicTradingHistory(params PublicTradingHistoryParams) (GetPublicTradingHistoryResponse, error) {
+	var pt GetPublicTradingHistoryResponse
+	q := d.QueryBuild(params)
+	bytes, err := d.Signer.Get(GET, GetPublicTradingHistory+q)
+	if err != nil {
+		return GetPublicTradingHistoryResponse{}, nil
+	}
+	err = json.Unmarshal(bytes, &pt)
+	if err != nil {
+		return GetPublicTradingHistoryResponse{}, err
+	}
+	return pt, err
+}
+
+func (d *Derivatives) GetOpenInterest(params OpenInterest) (OpenInterestResponse, error) {
+	var oi OpenInterestResponse
+	q := d.QueryBuild(params)
+
+	bytes, err := d.Signer.Get(GET, GetOpenInterest+q)
+	if err != nil {
+		return OpenInterestResponse{}, err
+	}
+
+	err = json.Unmarshal(bytes, &oi)
+	if err != nil {
+		return OpenInterestResponse{}, err
+	}
+
+	return oi, err
 
 }

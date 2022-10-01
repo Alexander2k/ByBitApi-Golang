@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"github.com/joho/godotenv"
 	"log"
-	"strconv"
 	"time"
 )
 
@@ -20,24 +19,15 @@ func main() {
 	}
 
 	api := client.NewAPI()
-	start := Date(2022, 1, 1)
-	end := Date(2022, 2, 1)
+	//start := Date(2022, 1, 1)
+	//end := Date(2022, 2, 1)
 
-	inst, _ := api.Derivatives.GetIndexPriceKline(derivatives.KlineParams{
+	riskLimit, _ := api.Derivatives.GetOpenInterest(derivatives.OpenInterest{
 		Category: "linear",
 		Symbol:   "BTCUSDT",
-		Interval: "5",
-		Start:    strconv.FormatInt(start.UnixMilli(), 10),
-		End:      strconv.FormatInt(end.UnixMilli(), 10),
-		Limit:    "25",
+		Interval: "5min",
 	})
 
-	history, _ := api.Derivatives.GetFoundingRateHistory(derivatives.FoundingRateHistoryParams{
-		Category: "linear",
-		Symbol:   "BTCUSDT",
-	})
-
-	fmt.Printf("%+v\n", inst)
-	fmt.Printf("%+v\n", history)
+	fmt.Printf("%+v\n", riskLimit.Result.List)
 
 }

@@ -204,3 +204,49 @@ type RiskLimitResponse struct {
 	} `json:"result"`
 	Time int64 `json:"time"`
 }
+
+type GetOptionDeliveryPriceResponse struct {
+	RetCode int    `json:"retCode"`
+	RetMsg  string `json:"retMsg"`
+	Result  struct {
+		ResultTotalSize int    `json:"resultTotalSize"`
+		Cursor          string `json:"cursor"`
+		DataList        []struct {
+			Category      string `json:"category"`
+			Symbol        string `json:"symbol"`
+			DeliveryPrice string `json:"deliveryPrice"`
+			DeliveryTime  string `json:"deliveryTime"`
+		} `json:"dataList"`
+	} `json:"result"`
+	Time int64 `json:"time"`
+}
+
+type GetPublicTradingHistoryResponse struct {
+	RetCode int    `json:"retCode"`
+	RetMsg  string `json:"retMsg"`
+	Result  struct {
+		Category string `json:"category"`
+		List     []struct {
+			ExecId string `json:"execId"`
+			Symbol string `json:"symbol"`
+			Price  string `json:"price"`
+			Size   string `json:"size"`
+			Side   string `json:"side"`
+			Time   string `json:"time"`
+		} `json:"list"`
+	} `json:"result"`
+	Time int64 `json:"time"`
+}
+type OpenInterestResponse struct {
+	RetCode int    `json:"retCode"`
+	RetMsg  string `json:"retMsg"`
+	Result  struct {
+		Symbol   string `json:"symbol"`
+		Category string `json:"category"`
+		List     []struct {
+			OpenInterest string `json:"openInterest"`
+			Timestamp    string `json:"timestamp"`
+		} `json:"list"`
+	} `json:"result"`
+	Time int64 `json:"time"`
+}
