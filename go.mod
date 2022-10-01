@@ -1,4 +1,4 @@
-module ByBitApiV2
+module ByBitApi-Golang
 
 go 1.19
 
