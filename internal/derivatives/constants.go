@@ -22,3 +22,22 @@ const (
 	GetPublicTradingHistory       = "/derivatives/v3/public/recent-trade?"
 	GetOpenInterest               = "/derivatives/v3/public/open-interest?"
 )
+
+// Order endpoints
+const (
+	PlaceOrder         = "/unified/v3/private/order/create?"
+	ReplaceOrder       = "/unified/v3/private/order/replace?"
+	CancelOrder        = "/unified/v3/private/order/cancel?"
+	GetOpenOrders      = "/unified/v3/private/order/unfilled-orders?"
+	GetOrders          = "/unified/v3/private/order/list?"
+	BatchPlaceOrders   = "/unified/v3/private/order/create-batch?"
+	BatchReplaceOrders = "/unified/v3/private/order/replace-batch?"
+	BatchCancelOrders  = "/unified/v3/private/order/cancel-batch?"
+	CancelAllOrders    = "/unified/v3/private/order/cancel-all?"
+)
+
+// Position endpoints
+const (
+	GetPosition    = "/unified/v3/private/position/list?"
+	ModifyLeverage = "/unified/v3/private/position/set-leverage?"
+)
