@@ -1,9 +1,9 @@
 package derivatives
 
 import (
-	"ByBitApi-Golang/pkg"
 	"encoding/json"
 	"fmt"
+	"github.com/Alexander2k/ByBitApi-Golang/pkg"
 	"net/http"
 )
 

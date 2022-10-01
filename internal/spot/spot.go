@@ -1,6 +1,6 @@
 package spot
 
-import "ByBitApi-Golang/pkg"
+import "github.com/Alexander2k/ByBitApi-Golang/pkg"
 
 type Spot struct {
 	Signer *pkg.Signer

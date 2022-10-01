@@ -1,9 +1,9 @@
 package main
 
 import (
-	"ByBitApi-Golang/internal/client"
-	"ByBitApi-Golang/internal/derivatives"
 	"fmt"
+	"github.com/Alexander2k/ByBitApi-Golang/internal/client"
+	"github.com/Alexander2k/ByBitApi-Golang/internal/derivatives"
 	"github.com/joho/godotenv"
 	"log"
 	"time"
