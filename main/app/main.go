@@ -18,7 +18,7 @@ func main() {
 		log.Fatal("Error loading .env file")
 	}
 
-	api := client.NewAPI()
+	api := client.NewByBitAPI()
 	//start := Date(2022, 1, 1)
 	//end := Date(2022, 2, 1)
 

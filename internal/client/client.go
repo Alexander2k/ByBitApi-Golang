@@ -12,7 +12,7 @@ type API struct {
 	Derivatives *derivatives.Derivatives
 }
 
-func NewAPI() *API {
+func NewByBitAPI() *API {
 	return &API{
 		Spot:        spot.NewSpot(),
 		Margin:      margin.NewMargin(),
