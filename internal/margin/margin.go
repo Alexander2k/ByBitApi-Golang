@@ -1,6 +1,6 @@
 package margin
 
-import "ByBitApiV2/pkg"
+import "ByBitApi-Golang/pkg"
 
 type Margin struct {
 	Signer *pkg.Signer

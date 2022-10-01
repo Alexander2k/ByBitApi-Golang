@@ -1,8 +1,8 @@
 package main
 
 import (
-	"ByBitApiV2/internal/client"
-	"ByBitApiV2/internal/derivatives"
+	"ByBitApi-Golang/internal/client"
+	"ByBitApi-Golang/internal/derivatives"
 	"fmt"
 	"github.com/joho/godotenv"
 	"log"

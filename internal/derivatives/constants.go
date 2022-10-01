@@ -38,6 +38,18 @@ const (
 
 // Position endpoints
 const (
-	GetPosition    = "/unified/v3/private/position/list?"
-	ModifyLeverage = "/unified/v3/private/position/set-leverage?"
+	GetPosition                   = "/unified/v3/private/position/list?"
+	ModifyLeverage                = "/unified/v3/private/position/set-leverage?"
+	SwitchTPSLMode                = "/unified/v3/private/position/tpsl/switch-mode?"
+	SetRiskLimit                  = "/unified/v3/private/position/set-risk-limit?"
+	SetTPSL                       = "/unified/v3/private/position/trading-stop?"
+	GetSevenDayTradingHistory     = "/unified/v3/private/execution/list?"
+	GetSettlementHistoryOptions   = "/unified/v3/private/delivery-record?"
+	GetSettlementHistoryPerpetual = "/unified/v3/private/settlement-record?"
+)
+
+// Account
+const (
+	GetWalletBalance              = "/unified/v3/private/account/wallet/balance?"
+	UpgradeToUnifiedMarginAccount = "/unified/v3/private/account/upgrade-unified-account"
 )

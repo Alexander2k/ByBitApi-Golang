@@ -1,9 +1,9 @@
 package client
 
 import (
-	"ByBitApiV2/internal/derivatives"
-	"ByBitApiV2/internal/margin"
-	"ByBitApiV2/internal/spot"
+	"ByBitApi-Golang/internal/derivatives"
+	"ByBitApi-Golang/internal/margin"
+	"ByBitApi-Golang/internal/spot"
 )
 
 type API struct {
