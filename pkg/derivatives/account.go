@@ -32,3 +32,7 @@ func (d *Derivatives) PlaceOrder(params Order) (OrderResponse, error) {
 
 	return orderResponse, err
 }
+
+func (d *Derivatives) ReplaceOrder() {
+
+}
