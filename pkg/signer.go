@@ -7,7 +7,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"net/http"
 	"os"
 	"strconv"
@@ -29,9 +28,9 @@ type Signer struct {
 
 func NewSigner() *Signer {
 	return &Signer{
-		Site:      os.Getenv("API-SITE"),
-		apiKey:    os.Getenv("API-KEY"),
-		apiSecret: os.Getenv("API-SECRET"),
+		Site:      os.Getenv("API_SITE"),
+		apiKey:    os.Getenv("API_KEY"),
+		apiSecret: os.Getenv("API_SECRET"),
 		client:    http.DefaultClient}
 }
 
@@ -73,7 +72,7 @@ func (a *Signer) Get(method, point string) ([]byte, error) {
 		}
 	}(response.Body)
 
-	readAll, err := ioutil.ReadAll(response.Body)
+	readAll, err := io.ReadAll(response.Body)
 	if err != nil {
 		return nil, err
 	}
@@ -113,7 +112,7 @@ func (a *Signer) Post(method, point string, body map[string]string) ([]byte, err
 		}
 	}(response.Body)
 
-	readAll, err := ioutil.ReadAll(response.Body)
+	readAll, err := io.ReadAll(response.Body)
 	if err != nil {
 		return nil, err
 	}

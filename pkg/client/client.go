@@ -1,9 +1,9 @@
 package client
 
 import (
-	"github.com/Alexander2k/ByBitApi-Golang/internal/derivatives"
-	"github.com/Alexander2k/ByBitApi-Golang/internal/margin"
-	"github.com/Alexander2k/ByBitApi-Golang/internal/spot"
+	"github.com/Alexander2k/ByBitApi-Golang/pkg/derivatives"
+	"github.com/Alexander2k/ByBitApi-Golang/pkg/margin"
+	"github.com/Alexander2k/ByBitApi-Golang/pkg/spot"
 )
 
 type API struct {
