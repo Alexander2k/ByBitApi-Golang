@@ -28,9 +28,9 @@ type Signer struct {
 
 func NewSigner() *Signer {
 	return &Signer{
-		Site:      os.Getenv("API_SITE"),
-		apiKey:    os.Getenv("API_KEY"),
-		apiSecret: os.Getenv("API_SECRET"),
+		Site:      os.Getenv("API-SITE"),
+		apiKey:    os.Getenv("API-KEY"),
+		apiSecret: os.Getenv("API-SECRET"),
 		client:    http.DefaultClient}
 }
 
