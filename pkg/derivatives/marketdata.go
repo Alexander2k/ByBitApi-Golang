@@ -36,6 +36,19 @@ func (d *Derivatives) GetOrderBook(params OrderBookParams) (OrderBookResponse, e
 	return orb, err
 }
 
+// GetKline
+// Query the kline data. Charts are returned in groups based on the requested interval.
+//
+//	Covers: Spot / Linear contract / Inverse contract
+//
+// Request Parameters
+// Parameter	Required	Type	Comments
+// category	true	string	Product type. spot,linear,inverse\n
+// symbol	true	string	Symbol name \n
+// interval	true	string	Kline interval. 1,3,5,15,30,60,120,240,360,720,D,M,W \n
+// start	false	integer	The start timestamp  \n
+// end	false	integer	The end timestamp (ms) \n
+// limit	false	integer	Limit for data size per page. [1, 200]. Default: 200 \n
 func (d *Derivatives) GetKline(params KlineParams) (KlineResponse, error) {
 	var kl KlineResponse
 	query := d.QueryBuild(params)

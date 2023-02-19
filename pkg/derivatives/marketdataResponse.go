@@ -8,7 +8,7 @@ type TickerResponse struct {
 		List     []struct {
 			Symbol                 string `json:"symbol"`
 			BidPrice               string `json:"bidPrice"`
-			AskPrice               string `json:"askPrice"`
+			AskPrice               string `json:"askPrice" `
 			LastPrice              string `json:"lastPrice"`
 			LastTickDirection      string `json:"lastTickDirection"`
 			PrevPrice24H           string `json:"prevPrice24h"`
@@ -131,11 +131,13 @@ type KlineResponse struct {
 	RetCode int    `json:"retCode"`
 	RetMsg  string `json:"retMsg"`
 	Result  struct {
-		Category string   `json:"category"`
-		Symbol   string   `json:"symbol"`
-		Interval string   `json:"interval"`
-		List     []string `json:"list"`
+		Symbol   string     `json:"symbol"`
+		Category string     `json:"category"`
+		List     [][]string `json:"list"`
 	} `json:"result"`
+	RetExtInfo struct {
+	} `json:"retExtInfo"`
+	Time int64 `json:"time"`
 }
 
 type OptionInfoResponse struct {

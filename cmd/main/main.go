@@ -6,11 +6,12 @@ import (
 	"github.com/Alexander2k/ByBitApi-Golang/pkg/derivatives"
 	"github.com/joho/godotenv"
 	"log"
+	"strconv"
 	"time"
 )
 
-func Date(year, month, day int) time.Time {
-	return time.Date(year, time.Month(month), day, 0, 0, 0, 0, time.UTC)
+func Date(year, month, day int) int64 {
+	return time.Date(year, time.Month(month), day, 0, 0, 0, 0, time.UTC).UnixMilli()
 }
 func main() {
 	err := godotenv.Load()
@@ -19,15 +20,19 @@ func main() {
 	}
 
 	api := client.NewByBitAPI()
-	//start := Date(2022, 1, 1)
-	//end := Date(2022, 2, 1)
+	start := Date(2023, 1, 1)
+	end := Date(2023, 2, 1)
+	symbol := "BTCUSDT"
 
-	riskLimit, _ := api.Derivatives.GetOpenInterest(derivatives.OpenInterest{
+	kl := derivatives.KlineParams{
 		Category: "linear",
-		Symbol:   "BTCUSDT",
-		Interval: "5min",
-	})
-
-	fmt.Printf("%+v\n", riskLimit.Result.List)
+		Symbol:   symbol,
+		Interval: "1",
+		Start:    strconv.FormatInt(start, 10),
+		End:      strconv.FormatInt(end, 10),
+		Limit:    "",
+	}
+	kline, _ := api.Derivatives.GetKline(kl)
+	fmt.Printf("%+v", kline)
 
 }
