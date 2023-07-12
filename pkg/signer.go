@@ -6,9 +6,9 @@ import (
 	"crypto/sha256"
 	"encoding/json"
 	"fmt"
+	"github.com/Alexander2k/ByBitApi-Golang/config"
 	"io"
 	"net/http"
-	"os"
 	"strconv"
 	"time"
 )
@@ -26,11 +26,11 @@ type Signer struct {
 	client    *http.Client
 }
 
-func NewSigner() *Signer {
+func NewSigner(c *config.Config) *Signer {
 	return &Signer{
-		Site:      os.Getenv("API-SITE"),
-		apiKey:    os.Getenv("API-KEY"),
-		apiSecret: os.Getenv("API-SECRET"),
+		Site:      c.Api.ApiSite,
+		apiKey:    c.Api.ApiKey,
+		apiSecret: c.Api.ApiSecret,
 		client:    http.DefaultClient}
 }
 

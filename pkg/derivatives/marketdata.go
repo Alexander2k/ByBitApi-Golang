@@ -3,6 +3,7 @@ package derivatives
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 )
 
 type MarketData interface {
@@ -55,11 +56,14 @@ func (d *Derivatives) GetKline(params KlineParams) (KlineResponse, error) {
 
 	bytes, err := d.Signer.Get(GET, GetKline+query)
 	if err != nil {
+		log.Printf("Error signing: %v", err)
 		return KlineResponse{}, nil
 	}
 
 	err = json.Unmarshal(bytes, &kl)
 	if err != nil {
+		log.Printf("Error unmarshal: %v \n", err)
+		log.Printf("%s \n", string(bytes))
 		return KlineResponse{}, err
 	}
 	return kl, err
