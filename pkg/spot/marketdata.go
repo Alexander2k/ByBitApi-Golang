@@ -11,7 +11,7 @@ type MarketData interface {
 	GetOrderBook(symbol, limit string) (OrderBookResponse, error)
 	GetMergedOrderBook(symbol, scale, limit string) (OrderBookResponse, error)
 	GetPublicTradingRecords(symbol string) (TradingRecordsResponse, error)
-	GetTicker(symbol string) (TickerResponse, error)
+	GetTickers(category, symbol string) (GetTickersResponse, error)
 	GetLastTradePrice(symbol string) (LastTradePriceResponse, error)
 	GetBookTicker(symbol string) (BookTickerResponse, error)
 }
@@ -74,23 +74,26 @@ func (s *Spot) GetPublicTradingRecords(symbol string) (TradingRecordsResponse, e
 	return tr, err
 }
 
-func (s *Spot) GetTicker(symbol string) (TickerResponse, error) {
-	var t TickerResponse
+// GetTickers Query for the latest price snapshot, best bid/ask price, and trading volume in the last 24 hours.
+// Category is Required
+// if not need symbol use ""
+func (s *Spot) GetTickers(category, symbol string) (GetTickersResponse, error) {
+	var t GetTickersResponse
 	var point string
 	if symbol != "" {
-		point = fmt.Sprintf("/spot/v3/public/quote/ticker/24hr?symbol=%s", symbol)
+		point = fmt.Sprintf("/v5/market/tickers?category=%s&symbol=%s", category, symbol)
 	} else {
-		point = "/spot/v3/public/quote/ticker/24hr"
+		point = fmt.Sprintf("/v5/market/tickers?category=%s", category)
 	}
 
 	b, err := s.Signer.Get(http.MethodGet, point)
 	if err != nil {
-		return TickerResponse{}, nil
+		return GetTickersResponse{}, nil
 	}
 
 	err = json.Unmarshal(b, &t)
 	if err != nil {
-		return TickerResponse{}, err
+		return GetTickersResponse{}, err
 	}
 
 	return t, err

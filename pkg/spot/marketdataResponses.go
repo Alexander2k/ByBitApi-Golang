@@ -2,6 +2,31 @@ package spot
 
 type RetExtInfo struct {
 }
+type GetTickersResponse struct {
+	RetCode int    `json:"retCode"`
+	RetMsg  string `json:"retMsg"`
+	Result  struct {
+		Category string `json:"category"`
+		List     []struct {
+			Symbol        string `json:"symbol"`
+			Bid1Price     string `json:"bid1Price"`
+			Bid1Size      string `json:"bid1Size"`
+			Ask1Price     string `json:"ask1Price"`
+			Ask1Size      string `json:"ask1Size"`
+			LastPrice     string `json:"lastPrice"`
+			PrevPrice24H  string `json:"prevPrice24h"`
+			Price24HPcnt  string `json:"price24hPcnt"`
+			HighPrice24H  string `json:"highPrice24h"`
+			LowPrice24H   string `json:"lowPrice24h"`
+			Turnover24H   string `json:"turnover24h"`
+			Volume24H     string `json:"volume24h"`
+			UsdIndexPrice string `json:"usdIndexPrice"`
+		} `json:"list"`
+	} `json:"result"`
+	RetExtInfo struct {
+	} `json:"retExtInfo"`
+	Time int64 `json:"time"`
+}
 
 type AllSymbolsResponse struct {
 	RetCode    int           `json:"retCode"`

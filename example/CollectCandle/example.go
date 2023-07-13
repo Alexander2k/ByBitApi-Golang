@@ -1,4 +1,4 @@
-package main
+package CollectCandle
 
 import (
 	"fmt"
@@ -14,6 +14,7 @@ import (
 func Date(year, month, day, hour, min int) int64 {
 	return time.Date(year, time.Month(month), day, 0, 0, 0, 0, time.Local).UnixMilli()
 }
+
 func main() {
 	conf, err := config.NewConfig()
 	if err != nil {
@@ -84,5 +85,4 @@ func main() {
 		}
 
 	}
-
 }
