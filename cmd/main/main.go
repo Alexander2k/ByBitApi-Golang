@@ -21,11 +21,12 @@ func main() {
 	}
 
 	api := client.NewByBitAPI(conf)
+	log.Printf("Starting")
 
 	offset := int64(12000000)
-	symbol := "XRPUSDT"
+	symbol := "DOGEUSDT"
 
-	start := Date(2021, 5, 13, 0, 0)
+	start := Date(2021, 6, 2, 0, 0)
 	end := Date(2023, 7, 13, 0, 0)
 
 	file, err := os.Create(symbol + ".txt")
